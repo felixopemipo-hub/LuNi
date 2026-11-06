@@ -1,0 +1,44 @@
+/* LuNi Story Audio controls */
+#luni-audio-controls {
+  box-sizing: border-box;
+  width: min(100% - 28px, 760px);
+  margin: 22px auto 26px;
+  padding: 18px;
+  border: 1px solid rgba(180, 151, 208, .35);
+  border-radius: 20px;
+  background: linear-gradient(135deg, #fffaff 0%, #f6f1ff 55%, #fff8f2 100%);
+  color: #46394f;
+  box-shadow: 0 10px 28px rgba(71, 48, 91, .09);
+  font-family: inherit;
+}
+#luni-audio-controls * { box-sizing: border-box; }
+#luni-audio-controls .luni-audio-heading {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 15px;
+}
+#luni-audio-controls .luni-audio-sparkle {
+  display: grid; place-items: center; width: 40px; height: 40px; flex: 0 0 40px;
+  border-radius: 14px; background: #eee3ff; color: #8764ad; font-size: 22px;
+}
+#luni-audio-controls .luni-audio-heading strong { display: block; font-size: 16px; line-height: 1.35; }
+#luni-audio-controls .luni-audio-heading small { display: block; margin-top: 2px; color: #85778e; font-size: 12px; }
+#luni-audio-controls .luni-audio-actions { display: flex; flex-wrap: wrap; gap: 9px; }
+#luni-audio-controls button {
+  min-height: 42px; padding: 10px 15px; border: 0; border-radius: 12px;
+  font-family: inherit; font-size: 13px; font-weight: 600; line-height: 1.2; cursor: pointer; transition: transform .15s ease, filter .15s ease;
+}
+#luni-audio-controls button:hover { filter: brightness(.97); transform: translateY(-1px); }
+#luni-audio-controls button:focus-visible,
+#luni-audio-controls select:focus-visible { outline: 3px solid rgba(137, 99, 177, .35); outline-offset: 2px; }
+#luni-audio-controls .luni-audio-primary { background: #79559d; color: #fff; }
+#luni-audio-controls .luni-audio-secondary { background: #eee7f5; color: #554364; }
+#luni-audio-controls .luni-voice-label { display: block; margin: 15px 0 6px; font-size: 12px; font-weight: 700; }
+#luni-audio-controls .luni-voice-select {
+  display: block; width: 100%; min-height: 40px; padding: 8px 10px;
+  border: 1px solid #ded1e9; border-radius: 10px; background: #fff;
+  color: #46394f; font: inherit; font-size: 13px;
+}
+#luni-audio-controls .luni-audio-note { display: block; margin-top: 7px; color: #867b8d; font-size: 11px; line-height: 1.45; }
+@media (max-width: 520px) {
+  #luni-audio-controls { width: calc(100% - 20px); padding: 15px; border-radius: 16px; }
+  #luni-audio-controls .luni-audio-actions button { flex: 1 1 calc(50% - 9px); }
+}
