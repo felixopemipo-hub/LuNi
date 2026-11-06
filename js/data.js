@@ -649,7 +649,7 @@ window.SITE={
    "featured": false
   },
   {
-   "title": "Create Your Own Comic Book",
+   "title": "Create Your Own Comic Book", 
    "date": "2026-11-28T11:00",
    "minutes": 60,
    "place": "Luni Story Shop",
