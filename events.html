@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Luni Story Shop</title>
+    <style>
+        :root {
+            --lavender: #E6E6FA;
+            --mint: #B6EBC9;
+            --cream: #FFF8E7;
+            --warm-brown: #8B7355;
+            --gold: #FFD700;
+            --sky-blue: #87CEEB;
+            --dark-blue: #4A6FA5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--cream);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--sky-blue);
+        }
+        
+        .logo-text {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--dark-blue);
+        }
+        
+        .logo-text span {
+            color: var(--gold);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-blue);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--sky-blue);
+        }
+        
+        .cta-button {
+            background-color: var(--sky-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--dark-blue);
+        }
+        
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, var(--lavender) 0%, var(--mint) 100%);
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .page-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-blue);
+        }
+        
+        .page-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+        
+        /* Event Filters */
+        .event-filters {
+            padding: 40px 0;
+            background-color: white;
+        }
+        
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .filter-btn {
+            background-color: var(--cream);
+            border: 2px solid var(--lavender);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--sky-blue);
+            color: white;
+            border-color: var(--sky-blue);
+        }
+        
+        /* Events Layout */
+        .events-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            padding: 80px 0;
+        }
+        
+        /* Events List */
+        .events-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .event-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            transition: transform 0.3s;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .event-date {
+            background-color: var(--sky-blue);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .event-day {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        
+        .event-month {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .event-content {
+            padding: 25px;
+        }
+        
+        .event-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .event-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .event-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .event-excerpt {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .event-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .event-tag {
+            background-color: var(--lavender);
+            color: var(--dark-blue);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .event-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--sky-blue);
+            border: 2px solid var(--sky-blue);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--sky-blue);
+            color: white;
+        }
+        
+        /* Featured Event */
+        .featured-event {
+            grid-column: 1 / -1;
+            margin-bottom: 40px;
+        }
+        
+        .featured-event .event-card {
+            grid-template-columns: 200px 1fr;
+        }
+        
+        .featured-event .event-date {
+            background: linear-gradient(135deg, var(--sky-blue) 0%, var(--lavender) 100%);
+        }
+        
+        .featured-event .event-title {
+            font-size: 1.8rem;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .widget-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--lavender);
+        }
+        
+        .calendar-widget {
+            text-align: center;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .calendar-nav {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--dark-blue);
+        }
+        
+        .calendar-month {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+        
+        .calendar-day {
+            padding: 8px 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark-blue);
+        }
+        
+        .calendar-date {
+            padding: 8px 5px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .calendar-date:hover {
+            background-color: var(--lavender);
+        }
+        
+        .calendar-date.event {
+            background-color: var(--sky-blue);
+            color: white;
+        }
+        
+        .calendar-date.today {
+            background-color: var(--gold);
+            color: white;
+        }
+        
+        .upcoming-events {
+            list-style: none;
+        }
+        
+        .upcoming-event {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .upcoming-event:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .upcoming-date {
+            width: 60px;
+            height: 60px;
+            background-color: var(--lavender);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .upcoming-day {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        
+        .upcoming-month {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .upcoming-content h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        .upcoming-content .event-meta {
+            margin-bottom: 0;
+            font-size: 0.8rem;
+        }
+        
+        .categories-list {
+            list-style: none;
+        }
+        
+        .categories-list li {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .categories-list a {
+            display: flex;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #555;
+            transition: color 0.3s;
+        }
+        
+        .categories-list a:hover {
+            color: var(--sky-blue);
+        }
+        
+        .category-count {
+            background-color: var(--lavender);
+            color: var(--dark-blue);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .newsletter-widget {
+            background: linear-gradient(135deg, var(--sky-blue) 0%, var(--lavender) 100%);
+            color: white;
+        }
+        
+        .newsletter-widget .widget-title {
+            color: white;
+            border-bottom-color: rgba(255,255,255,0.3);
+        }
+        
+        .newsletter-widget p {
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .newsletter-input {
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+        }
+        
+        /* Virtual Events */
+        .virtual-events {
+            padding: 80px 0;
+            background-color: var(--lavender);
+        }
+        
+        .virtual-events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .virtual-event-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .virtual-event-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .virtual-event-image {
+            height: 350px;
+            background-color: var(--mint);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--dark-blue);
+        }
+        
+        .virtual-event-content {
+            padding: 25px;
+        }
+        
+        .virtual-event-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--gold);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #ddd;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .events-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-event .event-card {
+                grid-template-columns: 150px 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .event-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .event-date {
+                flex-direction: row;
+                gap: 10px;
+                padding: 15px;
+            }
+            
+            .event-day {
+                font-size: 2rem;
+            }
+        }
+    </style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="stylesheet" href="css/extras.css"></head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">📚</div>
+                    <div class="logo-text">Luni <span>Story</span> Shop</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="stories.html">Stories</a></li>
+                        <li><a href="events.html" class="active">Events</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </nav>
+                <button class="cta-button">Join Story Time</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1>Magical Story Events</h1>
+                <p>Join us for enchanting storytimes, creative workshops, and special events that bring stories to life!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Filters -->
+    <section class="event-filters">
+        <div class="container">
+            <div class="filter-container">
+                <button class="filter-btn active">All Events</button>
+                <button class="filter-btn">Storytimes</button>
+                <button class="filter-btn">Workshops</button>
+                <button class="filter-btn">Special Events</button>
+                <button class="filter-btn">Virtual Events</button>
+                <button class="filter-btn">Weekend Events</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Content -->
+    <div class="container">
+        <div class="events-container">
+            <!-- Featured Event -->
+            <div class="featured-event">
+                <article class="event-card">
+                    <div class="event-date">
+                        <div class="event-day">15</div>
+                        <div class="event-month">JUNE</div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-meta">
+                            <span><i class="far fa-clock"></i> 10:00 AM - 11:30 AM</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Luni Story Shop</span>
+                            <span><i class="fas fa-user-friends"></i> Ages 3-7</span>
+                        </div>
+                        <h2 class="event-title">Summer Story Festival</h2>
+                        <p class="event-excerpt">Join us for our annual Summer Story Festival! A magical morning filled with interactive storytelling, character meet-and-greets, craft activities, and a special performance by the Storyteller's Troupe.</p>
+                        <div class="event-tags">
+                            <span class="event-tag">Special Event</span>
+                            <span class="event-tag">All Ages</span>
+                            <span class="event-tag">Festival</span>
+                        </div>
+                        <div class="event-actions">
+                            <button class="cta-button">Register Now</button>
+                            <button class="btn-outline">Add to Calendar</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Events List -->
+            <div class="events-list">
+                <article class="event-card">
+                    <div class="event-date">
+                        <div class="event-day">02</div>
+                        <div class="event-month">JUNE</div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-meta">
+                            <span><i class="far fa-clock"></i> 10:00 AM - 10:45 AM</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Luni Story Shop</span>
+                            <span><i class="fas fa-user-friends"></i> Ages 2-5</span>
+                        </div>
+                        <h3 class="event-title">Magical Morning Tales</h3>
+                        <p class="event-excerpt">Start your Saturday with enchanting stories, songs, and simple crafts. This week we're exploring stories about friendly forest animals.</p>
+                        <div class="event-tags">
+                            <span class="event-tag">Storytime</span>
+                            <span class="event-tag">Weekly</span>
+                        </div>
+                        <div class="event-actions">
+                            <button class="cta-button">Register</button>
+                            <button class="btn-outline">Details</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="event-card">
+                    <div class="event-date">
+                        <div class="event-day">05</div>
+                        <div class="event-month">JUNE</div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-meta">
+                            <span><i class="far fa-clock"></i> 3:00 PM - 4:00 PM</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Luni Story Shop</span>
+                            <span><i class="fas fa-user-friends"></i> Ages 4-8</span>
+                        </div>
+                        <h3 class="event-title">Animal Adventures Workshop</h3>
+                        <p class="event-excerpt">Create your own animal character and build their story in this interactive workshop. Includes storytelling, drawing, and a take-home craft.</p>
+                        <div class="event-tags">
+                            <span class="event-tag">Workshop</span>
+                            <span class="event-tag">Creative</span>
+                        </div>
+                        <div class="event-actions">
+                            <button class="cta-button">Register</button>
+                            <button class="btn-outline">Details</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="event-card">
+                    <div class="event-date">
+                        <div class="event-day">08</div>
+                        <div class="event-month">JUNE</div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-meta">
+                            <span><i class="far fa-clock"></i> 6:30 PM - 7:30 PM</span>
+                            <span><i class="fas fa-video"></i> Virtual Event</span>
+                            <span><i class="fas fa-user-friends"></i> All Ages</span>
+                        </div>
+                        <h3 class="event-title">Pajama Party Story Night</h3>
+                        <p class="event-excerpt">Put on your coziest pajamas and join us for a virtual bedtime story session with calming tales, lullabies, and a special guest storyteller.</p>
+                        <div class="event-tags">
+                            <span class="event-tag">Virtual</span>
+                            <span class="event-tag">Bedtime</span>
+                        </div>
+                        <div class="event-actions">
+                            <button class="cta-button">Register</button>
+                            <button class="btn-outline">Details</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="event-card">
+                    <div class="event-date">
+                        <div class="event-day">12</div>
+                        <div class="event-month">JUNE</div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-meta">
+                            <span><i class="far fa-clock"></i> 11:00 AM - 12:00 PM</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Luni Story Shop</span>
+                            <span><i class="fas fa-user-friends"></i> Ages 5-9</span>
+                        </div>
+                        <h3 class="event-title">Create Your Own Comic Book</h3>
+                        <p class="event-excerpt">Learn the basics of comic book creation - from character design to panel layout. Each child will create their own mini-comic to take home.</p>
+                        <div class="event-tags">
+                            <span class="event-tag">Workshop</span>
+                            <span class="event-tag">Art</span>
+                        </div>
+                        <div class="event-actions">
+                            <button class="cta-button">Register</button>
+                            <button class="btn-outline">Details</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-widget calendar-widget">
+                    <h3 class="widget-title">Event Calendar</h3>
+                    <div class="calendar-header">
+                        <button class="calendar-nav"><i class="fas fa-chevron-left"></i></button>
+                        <div class="calendar-month">June 2024</div>
+                        <button class="calendar-nav"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="calendar-day">S</div>
+                        <div class="calendar-day">M</div>
+                        <div class="calendar-day">T</div>
+                        <div class="calendar-day">W</div>
+                        <div class="calendar-day">T</div>
+                        <div class="calendar-day">F</div>
+                        <div class="calendar-day">S</div>
+                        
+                        <div class="calendar-date"></div>
+                        <div class="calendar-date"></div>
+                        <div class="calendar-date"></div>
+                        <div class="calendar-date"></div>
+                        <div class="calendar-date"></div>
+                        <div class="calendar-date"></div>
+                        <div class="calendar-date">1</div>
+                        
+                        <div class="calendar-date event">2</div>
+                        <div class="calendar-date">3</div>
+                        <div class="calendar-date">4</div>
+                        <div class="calendar-date event">5</div>
+                        <div class="calendar-date">6</div>
+                        <div class="calendar-date">7</div>
+                        <div class="calendar-date event">8</div>
+                        
+                        <div class="calendar-date">9</div>
+                        <div class="calendar-date">10</div>
+                        <div class="calendar-date">11</div>
+                        <div class="calendar-date event">12</div>
+                        <div class="calendar-date">13</div>
+                        <div class="calendar-date">14</div>
+                        <div class="calendar-date event today">15</div>
+                        
+                        <div class="calendar-date">16</div>
+                        <div class="calendar-date">17</div>
+                        <div class="calendar-date">18</div>
+                        <div class="calendar-date">19</div>
+                        <div class="calendar-date">20</div>
+                        <div class="calendar-date">21</div>
+                        <div class="calendar-date">22</div>
+                        
+                        <div class="calendar-date">23</div>
+                        <div class="calendar-date">24</div>
+                        <div class="calendar-date">25</div>
+                        <div class="calendar-date">26</div>
+                        <div class="calendar-date">27</div>
+                        <div class="calendar-date">28</div>
+                        <div class="calendar-date">29</div>
+                        
+                        <div class="calendar-date">30</div>
+                        <div class="calendar-date"></div>
+                        <div class="calendar-date"></div>
+                        <div class="calendar-date"></div>
+                        <div class="calendar-date"></div>
+                        <div class="calendar-date"></div>
+                        <div class="calendar-date"></div>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Upcoming Events</h3>
+                    <ul class="upcoming-events">
+                        <li class="upcoming-event">
+                            <div class="upcoming-date">
+                                <div class="upcoming-day">02</div>
+                                <div class="upcoming-month">JUN</div>
+                            </div>
+                            <div class="upcoming-content">
+                                <h4>Magical Morning Tales</h4>
+                                <div class="event-meta">
+                                    <span>10:00 AM</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="upcoming-event">
+                            <div class="upcoming-date">
+                                <div class="upcoming-day">05</div>
+                                <div class="upcoming-month">JUN</div>
+                            </div>
+                            <div class="upcoming-content">
+                                <h4>Animal Adventures Workshop</h4>
+                                <div class="event-meta">
+                                    <span>3:00 PM</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="upcoming-event">
+                            <div class="upcoming-date">
+                                <div class="upcoming-day">08</div>
+                                <div class="upcoming-month">JUN</div>
+                            </div>
+                            <div class="upcoming-content">
+                                <h4>Pajama Party Story Night</h4>
+                                <div class="event-meta">
+                                    <span>6:30 PM</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Event Categories</h3>
+                    <ul class="categories-list">
+                        <li>
+                            <a href="#">Storytimes <span class="category-count">8</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Workshops <span class="category-count">5</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Special Events <span class="category-count">3</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Virtual Events <span class="category-count">4</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Weekend Events <span class="category-count">6</span></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget newsletter-widget">
+                    <h3 class="widget-title">Event Updates</h3>
+                    <p>Get notified about new events, registration openings, and special offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                        <button type="submit" class="cta-button" style="width: 100%;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Virtual Events -->
+    <section class="virtual-events">
+        <div class="container">
+            <div class="section-title">
+                <h2>Virtual Story Experiences</h2>
+                <p>Can't join us in person? Enjoy our magical stories from anywhere!</p>
+            </div>
+            <div class="virtual-events-grid">
+                <div class="virtual-event-card">
+                    <div class="virtual-event-image"><img src="images/IMG-20260217-WA0022.jpg" alt="📖✨" height="100%" width="100%"  ></div>
+                    <div class="virtual-event-content">
+                        <h3 class="virtual-event-title">Audio Story Library</h3>
+                        <p>Access our collection of narrated stories with sound effects and music. Perfect for car rides or quiet time.</p>
+                        <button class="btn-outline" style="margin-top: 15px;">Explore Stories</button>
+                    </div>
+                </div>
+                <div class="virtual-event-card">
+                    <div class="virtual-event-image"><img src="images/IMG-20260217-WA0023.jpg" alt="📖✨" height="100%" width="100%"   ></div>
+                    <div class="virtual-event-content">
+                        <h3 class="virtual-event-title">Interactive E-Books</h3>
+                        <p>Our interactive stories let children make choices that change the narrative. A new adventure every time!</p>
+                        <button class="btn-outline" style="margin-top: 15px;">Try Now</button>
+                    </div>
+                </div>
+                <div class="virtual-event-card">
+                    <div class="virtual-event-image"><img src="images/IMG-20260217-WA0024.jpg" alt="📖✨" height="100%" width="100%"  ></div>
+                    <div class="virtual-event-content">
+                        <h3 class="virtual-event-title">Family Story Kits</h3>
+                        <p>Story boxes delivered to your door with books, activities, and materials for a complete story experience.</p>
+                        <button class="btn-outline" style="margin-top: 15px;">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Luni Story Shop</h3>
+                    <p>Where every child finds their magical story</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="stories.html">Stories by Age</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Street 1, Lane 3 FUTA NorthGate</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+234-703-839-4820</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@lunistoryshop.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year">2026</span> Luni Story Shop. All magic reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script></body>
+</html>

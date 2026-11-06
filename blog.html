@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Luni Story Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --lavender: #E6E6FA;
+            --mint: #B6EBC9;
+            --cream: #FFF8E7;
+            --warm-brown: #8B7355;
+            --gold: #FFD700;
+            --sky-blue: #87CEEB;
+            --dark-blue: #4A6FA5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--cream);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--sky-blue);
+        }
+        
+        .logo-text {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--dark-blue);
+        }
+        
+        .logo-text span {
+            color: var(--gold);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark-blue);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--sky-blue);
+        }
+        
+        .cta-button {
+            background-color: var(--sky-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--dark-blue);
+        }
+        
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, var(--lavender) 0%, var(--mint) 100%);
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .page-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-blue);
+        }
+        
+        .page-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+        
+        /* Blog Layout */
+        .blog-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            padding: 80px 0;
+        }
+        
+        /* Blog Posts */
+        .blog-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .blog-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .blog-image {
+            height: 250px;
+            background-color: var(--mint);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--dark-blue);
+        }
+        
+        .blog-content {
+            padding: 30px;
+        }
+        
+        .blog-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .blog-category {
+            background-color: var(--lavender);
+            color: var(--dark-blue);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        
+        .blog-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .blog-excerpt {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--sky-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .read-more:hover {
+            color: var(--dark-blue);
+        }
+        
+        /* Featured Post */
+        .featured-post {
+            grid-column: 1 / -1;
+            margin-bottom: 40px;
+        }
+        
+        .featured-post .blog-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .featured-post .blog-image {
+            height: 100%;
+            font-size: 6rem;
+        }
+        
+        .featured-post .blog-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .featured-post .blog-title {
+            font-size: 2.2rem;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .widget-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--lavender);
+        }
+        
+        .categories-list {
+            list-style: none;
+        }
+        
+        .categories-list li {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .categories-list a {
+            display: flex;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #555;
+            transition: color 0.3s;
+        }
+        
+        .categories-list a:hover {
+            color: var(--sky-blue);
+        }
+        
+        .category-count {
+            background-color: var(--lavender);
+            color: var(--dark-blue);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .recent-posts {
+            list-style: none;
+        }
+        
+        .recent-post {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .recent-post:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .recent-post-image {
+            width: 80px;
+            height: 80px;
+            background-color: var(--mint);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--dark-blue);
+            flex-shrink: 0;
+        }
+        
+        .recent-post-content h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        .recent-post-content .blog-meta {
+            margin-bottom: 0;
+            font-size: 0.8rem;
+        }
+        
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tag {
+            background-color: var(--lavender);
+            color: var(--dark-blue);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background-color: var(--sky-blue);
+            color: white;
+        }
+        
+        .newsletter-widget {
+            background: linear-gradient(135deg, var(--sky-blue) 0%, var(--lavender) 100%);
+            color: white;
+        }
+        
+        .newsletter-widget .widget-title {
+            color: white;
+            border-bottom-color: rgba(255,255,255,0.3);
+        }
+        
+        .newsletter-widget p {
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .newsletter-input {
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+        
+        .pagination a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            color: var(--dark-blue);
+            text-decoration: none;
+            border-radius: 50%;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .pagination a:hover, .pagination a.active {
+            background-color: var(--sky-blue);
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--gold);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #ddd;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-post .blog-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-post .blog-image {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="stylesheet" href="css/extras.css"></head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">📚</div>
+                    <div class="logo-text">Luni <span>Story</span> Shop</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="stories.html">Stories</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="blog.html" class="active">Blog</a></li>
+                    </ul>
+                </nav>
+                <button class="cta-button">Join Story Time</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1>Storyteller's Blog</h1>
+                <p>Discover tips, activities, and insights to inspire young readers and make storytime magical.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <div class="container">
+        <div class="blog-container">
+            <!-- Featured Post -->
+            <div class="featured-post">
+                <article class="blog-card">
+                    <div class="blog-image"><img src="images/IMG-20260217-WA0006.jpg" alt="Blog illustration" loading="lazy"></div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Reading Tips</span>
+                            <span><i class="far fa-calendar"></i> May 15, 2024</span>
+                            <span><i class="far fa-clock"></i> 5 min read</span>
+                        </div>
+                        <h2 class="blog-title">10 Creative Ways to Make Storytime Magical</h2>
+                        <p class="blog-excerpt">Transform ordinary reading sessions into extraordinary adventures with these simple yet effective techniques that will captivate your child's imagination and foster a lifelong love of reading.</p>
+                        <a href="#" class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Blog Posts -->
+            <div class="blog-posts">
+                <article class="blog-card">
+                    <div class="blog-image"><img src="images/IMG-20260217-WA0009.jpg" alt="Blog illustration" loading="lazy"></div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Activities</span>
+                            <span><i class="far fa-calendar"></i> May 10, 2024</span>
+                            <span><i class="far fa-clock"></i> 4 min read</span>
+                        </div>
+                        <h2 class="blog-title">5 Storytelling Games to Spark Imagination</h2>
+                        <p class="blog-excerpt">Engage your children with these fun storytelling games that encourage creativity, build vocabulary, and make learning an adventure they'll look forward to every day.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image"><img src="images/IMG-20260217-WA0002.jpg" alt="Blog illustration" loading="lazy"></div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Book Reviews</span>
+                            <span><i class="far fa-calendar"></i> May 5, 2024</span>
+                            <span><i class="far fa-clock"></i> 6 min read</span>
+                        </div>
+                        <h2 class="blog-title">Our Top 10 Picture Books for Toddlers This Spring</h2>
+                        <p class="blog-excerpt">Discover the most enchanting picture books that combine beautiful illustrations with captivating stories perfect for your little ones during the spring season.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image"><img src="images/IMG-20260217-WA0029.jpg" alt="Blog illustration" loading="lazy"></div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Audio Stories</span>
+                            <span><i class="far fa-calendar"></i> April 28, 2024</span>
+                            <span><i class="far fa-clock"></i> 3 min read</span>
+                        </div>
+                        <h2 class="blog-title">The Benefits of Audio Stories for Early Readers</h2>
+                        <p class="blog-excerpt">Learn how audio stories can support literacy development, improve listening skills, and provide a different dimension to the storytelling experience for children.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image"><img src="images/IMG-20260217-WA0003.jpg" alt="Blog illustration" loading="lazy"></div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Crafts</span>
+                            <span><i class="far fa-calendar"></i> April 20, 2024</span>
+                            <span><i class="far fa-clock"></i> 7 min read</span>
+                        </div>
+                        <h2 class="blog-title">Create Your Own Storybook Characters: A Craft Guide</h2>
+                        <p class="blog-excerpt">Follow our step-by-step guide to creating adorable storybook character puppets that will bring your children's favorite tales to life during reading sessions.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Categories</h3>
+                    <ul class="categories-list">
+                        <li>
+                            <a href="#">Reading Tips <span class="category-count">12</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Activities <span class="category-count">8</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Book Reviews <span class="category-count">15</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Audio Stories <span class="category-count">5</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Crafts <span class="category-count">7</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Parenting <span class="category-count">10</span></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Recent Posts</h3>
+                    <ul class="recent-posts">
+                        <li class="recent-post">
+                            <div class="recent-post-image"><img src="images/IMG-20260217-WA0022.jpg" alt="Blog illustration" loading="lazy"></div>
+                            <div class="recent-post-content">
+                                <h4>Building a Home Library Your Child Will Love</h4>
+                                <div class="blog-meta">
+                                    <span>Apr 15, 2024</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="recent-post">
+                            <div class="recent-post-image"><img src="images/IMG-20260217-WA0017.jpg" alt="Blog illustration" loading="lazy"></div>
+                            <div class="recent-post-content">
+                                <h4>Bedtime Stories That Help Children Sleep</h4>
+                                <div class="blog-meta">
+                                    <span>Apr 8, 2024</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="recent-post">
+                            <div class="recent-post-image"><img src="images/IMG-20260217-WA0014.jpg" alt="Blog illustration" loading="lazy"></div>
+                            <div class="recent-post-content">
+                                <h4>Why Fantasy Stories Are Important for Child Development</h4>
+                                <div class="blog-meta">
+                                    <span>Apr 1, 2024</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Popular Tags</h3>
+                    <div class="tags-cloud">
+                        <a href="#" class="tag">Bedtime</a>
+                        <a href="#" class="tag">Activities</a>
+                        <a href="#" class="tag">Picture Books</a>
+                        <a href="#" class="tag">Reading</a>
+                        <a href="#" class="tag">Crafts</a>
+                        <a href="#" class="tag">Imagination</a>
+                        <a href="#" class="tag">Learning</a>
+                        <a href="#" class="tag">Storytelling</a>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget newsletter-widget">
+                    <h3 class="widget-title">Storytime Newsletter</h3>
+                    <p>Get weekly story recommendations, reading tips, and exclusive content delivered to your inbox.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                        <button type="submit" class="cta-button" style="width: 100%;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Luni Story Shop</h3>
+                    <p>Where every child finds their magical story</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="stories.html">Stories by Age</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Street 1, Lane 3 FUTA NorthGate</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+234-703-839-4820</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@lunistoryshop.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year">2026</span> Luni Story Shop. All magic reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script></body>
+</html>
