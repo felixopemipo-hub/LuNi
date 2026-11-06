@@ -25,10 +25,7 @@ $('#totop').onclick=()=>scrollTo({top:0});
 $$('#year').forEach(y=>y.textContent=new Date().getFullYear());
 
 // story reader
-const readStory=title=>{const s=STORIES[title];if(!s)return;
-modal(`<img src="${s.img}" alt=""><h2>${esc(title)}</h2><p style="color:#777">Ages ${s.a[0]}-${s.a[1]}</p>${s.t.map(p=>`<p>${esc(p)}</p>`).join('')}<div class="modal-actions"><button class="cta-button" id="listen">🎧 Listen</button><button class="btn-outline" id="share">Share</button></div>`);
-$('#listen').onclick=function(){if(!('speechSynthesis' in window))return toast('Audio is not supported in this browser');if(speechSynthesis.speaking){speechSynthesis.cancel();this.textContent='🎧 Listen';return}const u=new SpeechSynthesisUtterance(title+'. '+s.t.join(' '));u.rate=.9;u.onend=()=>this.textContent='🎧 Listen';speechSynthesis.speak(u);this.textContent='⏹ Stop'};
-$('#share').onclick=async()=>{try{await navigator.clipboard.writeText(location.origin+location.pathname.replace(/[^/]*$/,'')+'stories.html?read='+encodeURIComponent(title));toast('Link copied!')}catch(e){toast('Could not copy link')}}};
+const readStory=title=>{if(STORIES[title])location.href='story.html?s='+encodeURIComponent(title)};
 const readPost=title=>{const p=BLOG[title];if(!p)return;modal(`<h2>${esc(title)}</h2>${p.map(x=>`<p>${esc(x)}</p>`).join('')}<div class="modal-actions"><a class="cta-button" style="text-decoration:none" href="stories.html">Browse Stories</a></div>`)};
 const register=(title,sub)=>{modal(`<h2>${esc(title)}</h2><p>${esc(sub||'Reserve your spot. We will confirm by email.')}</p><form id="reg"><label>Parent name</label><input name="n" required><label>Email</label><input name="e" type="email" required><label>Number of children</label><select name="k"><option>1</option><option>2</option><option>3</option><option>4+</option></select><button class="cta-button" style="width:100%">Confirm Registration</button></form>`);
 $('#reg').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target);store('registrations',{event:title,name:f.get('n'),email:f.get('e'),kids:f.get('k')});close();toast(`You're registered for ${title}! 🎉`)}};
