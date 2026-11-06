@@ -44,6 +44,9 @@ return `<article class="event-card" data-date="${e.date}"><div class="event-date
 const fi=Math.max(0,up.findIndex(e=>e.featured));const fe=up[fi];const rest=up.filter((e,i)=>i!==fi);
 $('.featured-event').innerHTML=fe?eCard(fe,1):'';$('.events-list').innerHTML=rest.map(e=>eCard(e)).join('')||(fe?'':'<p class="empty-msg">No upcoming events right now. Check back soon!</p>')}
 
+if($('.featured-stories .stories-grid')){const g=$('.featured-stories .stories-grid');g.innerHTML=SITE.stories.slice(1,9).map(s=>`<div class="story-card"><div class="story-image"><img src="${esc(s.img)}" alt="${esc(s.title)}" loading="lazy"></div><div class="story-content"><h3>${esc(s.title)}</h3><div class="story-meta"><span>Ages ${s.ages[0]}-${s.ages[1]}</span><span>${s.mins} min</span></div><p>${esc(s.excerpt)}</p><a href="#" class="read-more">Read More →</a></div></div>`).join('');
+g.insertAdjacentHTML('afterend',`<div style="text-align:center;margin-top:35px"><a class="cta-button" href="stories.html" style="text-decoration:none;display:inline-block">Browse all ${SITE.stories.length} stories →</a></div>`)}
+
 // nav, header, progress
 const page=location.pathname.split('/').pop()||'index.html';
 $$('nav a').forEach(a=>a.getAttribute('href')===page&&a.classList.add('active'));
