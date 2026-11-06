@@ -40,7 +40,7 @@ if(!ac){ac=new AC();master=ac.createGain();master.gain.value=0;master.connect(ac
 ac.resume();mOn=true;nextBar=ac.currentTime+.1;tick();mTimer=setInterval(tick,800);vol();musicBtn.classList.add('on');set('music','1')};
 const musicOff=()=>{if(!mOn)return;mOn=false;vol();clearInterval(mTimer);setTimeout(()=>{!mOn&&ac&&ac.suspend()},1200);musicBtn.classList.remove('on');set('music','0')};
 musicBtn.onclick=()=>mOn?musicOff():musicOn();
-const duck=b=>{ducked=b;vol()};
+const duck=b=>{ducked=b;vol()}; 
 // listen with paragraph highlight
 const ps=[...document.querySelectorAll('.paper p')];let on=false;
 const stop=()=>{on=false;duck(false);speechSynthesis.cancel();ps.forEach(p=>p.classList.remove('speaking'));$('#listen').classList.remove('on');$('#listen span').textContent='Listen'};
