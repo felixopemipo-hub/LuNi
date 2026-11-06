@@ -49,3 +49,4 @@ footer{text-align:center;padding:40px 15px;background:#4A6FA5;color:#fff;margin-
 #toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%,120px);background:#4A6FA5;color:#fff;padding:13px 26px;border-radius:30px;z-index:300;transition:.4s}#toast.show{transform:translate(-50%,0)}
 @media(max-width:760px){.hero-in{flex-direction:column;text-align:center;gap:26px}.cover{flex-basis:auto;width:min(280px,80%)}.chips,.meta{justify-content:center}.brand,.back span,.listen span{display:none}.hero{padding-top:40px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.paper p,.paper .div{opacity:1;transform:none}}
+.tools button.on:not(.listen){background:var(--gold);color:#5a4a00}
