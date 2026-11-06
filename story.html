@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Story - Luni Story Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+<div id="bar"></div>
+<header class="topbar">
+  <a class="back" href="stories.html"><i class="fas fa-arrow-left"></i> <span>All Stories</span></a>
+  <a class="brand" href="index.html">📚 Luni <span>Story</span> Shop</a>
+  <div class="tools">
+    <button id="smaller" title="Smaller text">A<small>-</small></button>
+    <button id="bigger" title="Bigger text">A<sup>+</sup></button>
+    <button id="theme" title="Day / night mode"><i class="fas fa-moon"></i></button>
+    <button id="listen" class="listen"><i class="fas fa-headphones"></i> <span>Listen</span></button>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="bg" id="bg"></div>
+  <div class="hero-in">
+    <div class="cover"><img id="cover" alt=""></div>
+    <div class="hero-text">
+      <div class="chips" id="chips"></div>
+      <h1 id="title"></h1>
+      <div class="meta"><span id="age"></span><span id="mins"></span></div>
+    </div>
+  </div>
+  <div class="wave"></div>
+</section>
+
+<main>
+  <article id="story" class="paper"></article>
+  <div class="end" id="end"><div class="stars">⭐ ✨ ⭐</div><h2>The End</h2><p>Did you enjoy this story?</p>
+    <div class="actions"><button id="again"><i class="fas fa-redo"></i> Read again</button><button id="share"><i class="fas fa-share-alt"></i> Share</button><a href="stories.html"><i class="fas fa-book-open"></i> More stories</a></div></div>
+</main>
+
+<section class="more"><h2>More stories you'll love</h2><div class="more-grid" id="more"></div></section>
+<footer>© <span id="year"></span> Luni Story Shop · Where every child finds their magical story</footer>
+<div id="toast"></div>
+<script src="js/data.js"></script><script src="js/story.js"></script>
+</body></html>
